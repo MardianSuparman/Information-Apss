@@ -3,11 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:myapp/app/data/categorie_response.dart';
 import 'package:myapp/app/data/detail_event_response.dart';
 import 'package:myapp/app/data/event_response.dart';
+import 'package:myapp/app/data/information_response.dart';
+import 'package:myapp/app/modules/categorie/views/categorie_view.dart';
 import 'package:myapp/app/modules/dashboard/views/index_view.dart';
 import 'package:myapp/app/modules/dashboard/views/profile_view.dart';
-import 'package:myapp/app/modules/dashboard/views/your_event_view.dart';
+// import 'package:myapp/app/modules/dashboard/views/your_event_view.dart';
+import 'package:myapp/app/modules/information/views/information_view.dart';
 import 'package:myapp/app/utils/api.dart';
 
 class DashboardController extends GetxController {
@@ -22,8 +26,10 @@ class DashboardController extends GetxController {
   }
 
   final List<Widget> pages = [
-    IndexView(),
-    YourEventView(),
+    // IndexView(),
+    // YourEventView(),
+    InformationView(),
+    CategorieView(),
     ProfileView(),
   ];
 
@@ -35,6 +41,26 @@ class DashboardController extends GetxController {
       contentType: 'application/json',
     );
     return EventResponse.fromJson(response.body);
+  }
+
+  // GET INFORMATION
+  Future<InformationResponse> getInformation() async {
+    final response = await _getConnect.get(
+      BaseUrl.information,
+      headers: {'Authorization': 'Bearer $token'},
+      contentType: 'application/json',
+    );
+    return InformationResponse.fromJson(response.body);
+  }
+
+// GET INFORMATION
+  Future<CategorieResponse> getCategorie() async {
+    final response = await _getConnect.get(
+      BaseUrl.categorie,
+      headers: {'Authorization': 'Bearer $token'},
+      contentType: 'application/json',
+    );
+    return CategorieResponse.fromJson(response.body);
   }
 
   // GET YOUR EVENTS

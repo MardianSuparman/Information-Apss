@@ -34,6 +34,10 @@ class DashboardView extends GetView<DashboardController> {
               icon: Icon(Icons.home),
               label: 'Beranda',
             ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.newspaper),
+            //   label: 'Informasi',
+            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.category),
               label: 'Kategori',

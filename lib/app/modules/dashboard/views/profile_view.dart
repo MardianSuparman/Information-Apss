@@ -6,7 +6,7 @@ import 'package:myapp/app/data/profile_response.dart';
 import '../../profile/controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  const ProfileView({super.key});
+  final ProfileController controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,6 @@ class ProfileView extends GetView<ProfileController> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 8),
                   Text(
                     "${data.name}",
                     style: const TextStyle(

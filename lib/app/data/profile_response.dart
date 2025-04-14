@@ -2,7 +2,7 @@ class ProfileResponse {
   int? id;
   String? name;
   String? email;
-  Null emailVerifiedAt;
+  Null? emailVerifiedAt;
   String? createdAt;
   String? updatedAt;
 
