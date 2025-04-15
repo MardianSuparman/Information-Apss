@@ -11,13 +11,13 @@ class InformationResponse {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['success'] = success;
     data['message'] = message;
     if (this.data != null) {
@@ -39,6 +39,7 @@ class Data {
   String? updatedAt;
   String? slug;
   Category? category;
+  User? user;
 
   Data(
       {this.id,
@@ -51,7 +52,8 @@ class Data {
       this.createdAt,
       this.updatedAt,
       this.slug,
-      this.category});
+      this.category,
+      this.user});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -65,12 +67,13 @@ class Data {
     updatedAt = json['updated_at'];
     slug = json['slug'];
     category = json['category'] != null
-        ? Category.fromJson(json['category'])
+        ? new Category.fromJson(json['category'])
         : null;
+    user = json['user'] != null ? new User.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = id;
     data['title'] = title;
     data['content'] = content;
@@ -83,6 +86,9 @@ class Data {
     data['slug'] = slug;
     if (category != null) {
       data['category'] = category!.toJson();
+    }
+    if (user != null) {
+      data['user'] = user!.toJson();
     }
     return data;
   }
@@ -106,12 +112,49 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = id;
     data['name'] = name;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     data['slug'] = slug;
+    return data;
+  }
+}
+
+class User {
+  int? id;
+  String? name;
+  String? email;
+  Null? emailVerifiedAt;
+  String? createdAt;
+  String? updatedAt;
+
+  User(
+      {this.id,
+      this.name,
+      this.email,
+      this.emailVerifiedAt,
+      this.createdAt,
+      this.updatedAt});
+
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    email = json['email'];
+    emailVerifiedAt = json['email_verified_at'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['name'] = name;
+    data['email'] = email;
+    data['email_verified_at'] = emailVerifiedAt;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

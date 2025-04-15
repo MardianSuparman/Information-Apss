@@ -16,7 +16,7 @@ class HomeController extends GetxController {
   void onInit() {
     _pindah = Timer.periodic(
       const Duration(seconds: 4),
-      (timer) => authToken.read('token') == null
+      (timer) => authToken.read('access_token') == null
           ? Get.off(
               () => const LoginView(),
               transition: Transition.leftToRight,

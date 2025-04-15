@@ -3,15 +3,14 @@ class BaseUrl {
   static String register = 'http://127.0.0.1:8000/api/register';
   static String logout = 'http://127.0.0.1:8000/api/logout';
 
+  // INFORMATION
+  static String information = 'http://127.0.0.1:8000/api/information';
 
   // CATEGORIE
   static String categorie = 'http://127.0.0.1:8000/api/categorie';
   
-  // CATEGORIE
-  static String information = 'http://127.0.0.1:8000/api/information';
-
   //PROFILE
-  static String profile = 'http://127.0.0.1:8000/api/profile';
+  static String profile = 'http://127.0.0.1:8000/api/user';
   
   // EVEMTS
   static String events =

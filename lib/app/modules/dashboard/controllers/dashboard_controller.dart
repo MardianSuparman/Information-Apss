@@ -7,19 +7,19 @@ import 'package:myapp/app/data/categorie_response.dart';
 import 'package:myapp/app/data/detail_event_response.dart';
 import 'package:myapp/app/data/event_response.dart';
 import 'package:myapp/app/data/information_response.dart';
-import 'package:myapp/app/modules/categorie/views/categorie_view.dart';
-import 'package:myapp/app/modules/dashboard/views/index_view.dart';
+import 'package:myapp/app/modules/dashboard/views/categorie_view.dart';
 import 'package:myapp/app/modules/dashboard/views/profile_view.dart';
-// import 'package:myapp/app/modules/dashboard/views/your_event_view.dart';
-import 'package:myapp/app/modules/information/views/information_view.dart';
+import 'package:myapp/app/modules/dashboard/views/information_view.dart';
 import 'package:myapp/app/utils/api.dart';
 
-class DashboardController extends GetxController {
+// import 'package:myapp/app/modules/dashboard/views/index_view.dart';
+// import 'package:myapp/app/modules/dashboard/views/your_event_view.dart';
 
+class DashboardController extends GetxController {
   final selectedIndex = 0.obs;
   final _getConnect = GetConnect();
 
-  final token = GetStorage().read('token');
+  final token = GetStorage().read('access_token');
 
   void changeIndex(int index) {
     selectedIndex.value = index;
@@ -50,6 +50,9 @@ class DashboardController extends GetxController {
       headers: {'Authorization': 'Bearer $token'},
       contentType: 'application/json',
     );
+    print('tokent : $token');
+    print('status code : ${response.statusCode}');
+    print(response.body);
     return InformationResponse.fromJson(response.body);
   }
 
@@ -82,7 +85,6 @@ class DashboardController extends GetxController {
   TextEditingController eventDateController =
       TextEditingController(); // Masukan Alamat atau Tempatnya
   TextEditingController locationController = TextEditingController();
-
 
   // ADD EVENT
   void addEvent() async {
@@ -242,13 +244,16 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() {
-    getEvent();
-    getYourEvent();
+    // getEvent();
+    // getYourEvent();
+    
     super.onInit();
   }
 
   @override
   void onReady() {
+    getInformation();
+    getCategorie();
     super.onReady();
   }
 
@@ -256,5 +261,4 @@ class DashboardController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
 }

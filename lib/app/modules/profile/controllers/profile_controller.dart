@@ -6,7 +6,7 @@ import 'package:myapp/app/utils/api.dart';
 class ProfileController extends GetxController {
   final box = GetStorage();
   final _getConnect = GetConnect();
-  final token = GetStorage().read('token');
+  final token = GetStorage().read('access_token');
   final isLoading = false.obs;
   // final profile = Rxn<ProfileResponse>();
 
@@ -34,8 +34,9 @@ class ProfileController extends GetxController {
       rethrow;
     }
   }
+
   void logout() {
-    box.remove('token');
+    box.remove('access_token');
     Get.offAllNamed('/login');
   }
 }
