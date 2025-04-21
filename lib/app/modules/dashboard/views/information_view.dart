@@ -10,9 +10,9 @@ class InformationView extends GetView {
   const InformationView({super.key});
   @override
   Widget build(BuildContext context) {
-    DashboardController controller = Get.put(DashboardController());
     final ScrollController scrollController = ScrollController();
-
+    final controller = Get.find<DashboardController>();
+    
     return Scaffold(
       appBar: AppBar(
         // Membuat AppBar dengan judul "Event List"
